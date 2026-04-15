@@ -34,5 +34,48 @@ export default {
 </script>
 
 <style>
+    .admin-pages {
+        padding: 20px;
+    }
 
+    /* ===== ABAS ===== */
+    /* Deixa as abas com visual mais moderno */
+    .admin-pages .nav-tabs {
+        border-bottom: 2px solid #e0e0e0;
+        gap: 4px;
+    }
+
+    .admin-pages .nav-tabs .nav-link {
+        border: none;
+        color: var(--text-light);
+        font-weight: 600;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 10px 20px;
+        border-radius: 8px 8px 0 0;
+        transition: color var(--transition), background-color var(--transition);
+    }
+
+    .admin-pages .nav-tabs .nav-link:hover {
+        color: var(--primary);
+        background-color: rgba(67, 97, 238, 0.06);
+    }
+
+    .admin-pages .nav-tabs .nav-link.active {
+        color: var(--primary);
+        border-bottom: 2px solid var(--primary);
+        background-color: transparent;
+    }
+
+    /* ===== CARD DAS ABAS ===== */
+    .admin-pages .card {
+        border: none;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+    }
+
+    .admin-pages .card-body {
+        padding: 24px;
+    }
 </style>

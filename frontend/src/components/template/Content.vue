@@ -14,7 +14,6 @@ export default {
     .content {
         grid-area: content;
         background-color: #efefef;
-        padding: 20px;
         user-select: none;
     }
 </style>

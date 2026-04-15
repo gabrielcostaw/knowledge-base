@@ -26,22 +26,39 @@ export default {
     .stat {
         flex: 1;
         display: flex;
-        border-radius: 8px;
+        align-items: center;
+        border-radius: var(--radius);
         margin-right: 20px;
         margin-bottom: 20px;
-        background-color: white;
-        padding: 20px;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+        background-color: var(--surface);
+        padding: 24px;
+        box-shadow: var(--shadow);
+        transition: box-shadow var(--transition), transform var(--transition);
+        min-width: 200px;
+    }
+
+    .stat:hover {
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-3px);
     }
 
     .stat-icon {
         display: flex;
         align-items: center;
+        justify-content: center;
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        background-color: currentColor;
+        opacity: 0.9;
+        margin-right: 20px;
+        flex-shrink: 0;
     }
 
     .stat-icon i {
-        font-size: 5rem;
+        font-size: 2rem;
+        color: white;
+        opacity: 1;
     }
 
     .stat-info {
@@ -51,11 +68,19 @@ export default {
         align-items: flex-end;
     }
 
-    .stat-icon {
-        font-size: 1.2rem;
+    .stat-title {
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--text-light);
+        margin-bottom: 6px;
     }
-    
+
     .stat-value {
-        font-size: 3rem;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1;
     }
 </style>

@@ -5,7 +5,7 @@
         <input type="text" placeholder="Digite para filtrar"
             v-model="treeFilter" class="filter-field">
     </div>
-    <Tree v-if="treeData.length > 0" :data="treeData" :options="treeOptions"
+    <Tree :data="treeData" :options="treeOptions"
         :filter="treeFilter" ref="tree" />
   </aside>
 </template>
@@ -23,28 +23,20 @@ export default {
     data: function() {
         return {
             treeFilter: '',
-            treeData: [],
+            treeData: this.getTreeData(),
             treeOptions: {
                 propertyNames: { 'text': 'name' },
                 filter: { emptyText: 'Categoria não encontrada' }
             }
         }
     },
-    async mounted() {
-    this.treeData = await this.getTreeData()
-    await this.$nextTick()
-    this.$refs.tree.$on('node:selected', this.onNodeSelect)
+    mounted() {
+        this.$refs.tree.$on('node:selected', this.onNodeSelect)
     },
     methods: {
-        async getTreeData() {
-            try {
-                const url = `${baseApiUrl}/categories/tree`
-                const res = await axios.get(url)
-    
-                return res.data
-            } catch(e) {
-                showError(e)
-            }
+        getTreeData() {
+            const url = `${baseApiUrl}/categories/tree`
+            return axios.get(url).then(res => res.data).catch(showError)
         },
         onNodeSelect(node) {
             this.$router.push({
@@ -63,56 +55,78 @@ export default {
 <style>
     .menu {
         grid-area: menu;
-        background: linear-gradient(to right, #232526, #414645);
+        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+        height: 100%;
 
         display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
-        
+
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        z-index: 5;
+
+        overflow-y: auto;
+    }
+
+    .menu::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .menu::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
     }
 
     .menu a, .menu a:hover {
-        color: white;
+        color: rgba(255, 255, 255, 0.85);
         text-decoration: none;
-
+        transition: color var(--transition);
     }
 
     .menu .tree-node.selected > .tree-content,
     .menu .tree-node .tree-content:hover {
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        transition: background-color var(--transition);
     }
 
-    .tree-arrow.has-child {
+    .tree-node.has-child .tree-arrow {
         filter: brightness(3);
     }
-
+    
     .menu .menu-filter {
         display: flex;
-        justify-content: center;
         align-items: center;
 
-        margin: 20px;
-        padding-bottom: 8px;
-        border-bottom: 1px solid gray;
+        margin: 16px;
+        padding: 10px 14px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .menu .menu-filter i {
-        color: white;
+        color: rgba(255, 255, 255, 0.5);
         margin-right: 10px;
+        font-size: 0.9rem;
     }
 
     .menu input {
-        color: #ccc;
-        font: 1.3rem;
+        color: white;
+        font-size: 0.9rem;
         border: 0;
         outline: 0;
         width: 100%;
         background: transparent;
     }
 
+    .menu input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
     .tree-filter-empty {
-        color: #ccc;
+        color: rgba(255, 255, 255, 0.5);
         margin-left: 20px;
-        font-size: 1.3rem   ;
+        font-size: 1rem;
+        font-style: italic;
     }
 </style>

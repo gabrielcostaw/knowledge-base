@@ -40,25 +40,54 @@ export default {
 </script>
 
 <style>
-    .article-content {
-        background-color: white;
-        border-radius: 10px;
-        padding: 25px;
+    .article-by-id {
+        padding: 20px;
     }
 
+    .article-content {
+        background-color: var(--surface);
+        border-radius: var(--radius);
+        padding: 40px;
+        box-shadow: var(--shadow);
+        
+        max-width: 900px;
+        
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--text);
+    }
+
+    
     .article-content pre {
-        padding: 20px;
+        padding: 24px;
         border-radius: 8px;
-        font-size: 1.2rem;
-        background-color: #1e1e1e;
-        color: white;
+        font-size: 0.95rem;
+        background-color: #1a1a2e;
+        color: #e0e0e0;
+        overflow-x: auto; 
+        margin: 24px 0;
     }
 
     .article-content img {
         max-width: 100%;
+        border-radius: 8px;
+        margin: 16px 0;
+    }
+
+    .article-content h1,
+    .article-content h2,
+    .article-content h3 {
+        color: var(--text);
+        font-weight: 700;
+        margin-top: 32px;
+        margin-bottom: 16px;
+    }
+
+    .article-content p {
+        margin-bottom: 16px;
     }
 
     .article-content :last-child {
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
 </style>

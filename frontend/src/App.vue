@@ -6,7 +6,6 @@
 		<Menu v-if="user"/> 
 		<Loading v-if="validatingToken" />
 		<Content v-else />
-		<Footer />
 	</div>
 </template>
 
@@ -17,13 +16,12 @@ import { mapState } from 'vuex'
 import Header from '@/components/template/Header'
 import Menu from '@/components/template/Menu'
 import Content from '@/components/template/Content'
-import Footer from '@/components/template/Footer'
 import Loading from '@/components/template/Loading'
 
 
 export default {
 	name: "App",
-	components: { Header, Menu, Content, Footer, Loading },
+	components: { Header, Menu, Content, Loading },
 	computed: mapState(['isMenuVisible', 'user']),
 	data: function() {
 		return {
@@ -67,32 +65,52 @@ export default {
 </script>
 
 <style>
-	* {
-		font-family: "Lato", sans-serif;
+    :root {
+        --primary: #4361ee;
+        --primary-dark: #3a56d4;
+        --background: #f0f2f5;
+        --surface: #ffffff;
+        --text: #212529;
+        --text-light: #6c757d;
+        --shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 4px 24px rgba(0, 0, 0, 0.14);
+        --radius: 12px;
+        --transition: 0.2s ease;
+    }
+
+   
+    * {
+        font-family: "Lato", sans-serif;
+        box-sizing: border-box; 
+    }
+
+    body {
+        margin: 0;
+        background-color: var(--background);
+        color: var(--text);
+    }
+
+    
+    #app {
+    	-webkit-font-smoothing: antialiased;
+    	-moz-osx-font-smoothing: grayscale;
+
+    	height: 100vh;
+    	display: grid;
+    	grid-template-rows: 60px 1fr;
+    	grid-template-columns: 280px 1fr;
+    	grid-template-areas: 
+        'header header'
+        'menu content';
+    
+    	align-items: stretch;
 	}
 
-	body {
-		margin: 0;
-	}
-
-	#app {
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-
-		height: 100vh;
-		display: grid;
-		grid-template-rows: 60px 1fr 40px;
-		grid-template-columns: 300px 1fr;
-		grid-template-areas: 
-			'header header'
-			'menu content'
-			'menu footer';
-	}
-
-	#app.hide-menu {
-		grid-template-areas: 
-			'header header'
-			'content content'
-			'footer footer';
-	}
+    
+    #app.hide-menu {
+        grid-template-areas: 
+            'header header'
+            'content content'
+            'content content';
+    }
 </style>

@@ -4,11 +4,11 @@
             sub="Base de conhecimento" />
         <div class="stats">
             <Stat :title="'Categorias'" :value="stat.categories"
-                icon="fa fa-folder" :color="'red'"/>
+                icon="fa fa-folder" :color="'#4361ee'"/>
             <Stat :title="'Artigos'" :value="stat.articles"
-                icon="fa fa-file" :color="'green'"/>
+                icon="fa fa-file" :color="'#7209b7'"/>
             <Stat :title="'Usuários'" :value="stat.users"
-                icon="fa fa-users" :color="'blue'" />
+                icon="fa fa-users" :color="'#f72585'" />
         </div>
     </div>
 </template>
@@ -18,6 +18,7 @@ import PageTitle from '../template/PageTitle'
 import Stat from './Stat.vue'
 import axios from 'axios'
 import { baseApiUrl } from '@/global'
+import { showError } from '../../global'
 
 export default {    
     name: 'Home',
@@ -34,10 +35,9 @@ export default {
         async getStats() {
             try {
                 const { data } = await axios.get(`${baseApiUrl}/stats`)
-                console.log(data)
                 this.stat = data
             } catch(e){
-                console.error('Erro ao buscar stats: ', (e))
+                showError(e)
             } 
         }
     }
@@ -45,6 +45,10 @@ export default {
 </script>
 
 <style>
+    .home {
+        padding: 20px;
+    }
+
     .stats {
         display: flex;
         justify-content: space-between;

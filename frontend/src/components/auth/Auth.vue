@@ -67,52 +67,118 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        background: linear-gradient(135deg, #1a1a2e 0%, var(--primary) 100%);
     }
 
     .auth-modal {
-        background-color:white;
-        width: 350px;
-        padding: 35px;
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+        background-color: var(--surface);
+        width: 380px;
+        padding: 40px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-hover);
 
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        animation: fadeInUp 0.4s ease;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .auth-title {
-        font-size: 1.2rem;
-        font-weight: 100;
-        margin-top: 10px;
-        margin-bottom: 15px;
+        font-size: 1.4rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--text);
+        margin-top: 20px;
+        margin-bottom: 25px;
     }
 
     .auth-modal input {
-        border: 1px solid #BBB;
         width: 100%;
-        margin-bottom: 15px;
-        padding: 3px 8px;
+        border: none;
+        border-bottom: 2px solid #e0e0e0;
+        padding: 10px 4px;
+        margin-bottom: 20px;
+        font-size: 0.95rem;
+        color: var(--text);
         outline: none;
+        background: transparent;
+        transition: border-color var(--transition);
     }
 
+    .auth-modal input:focus {
+        border-bottom-color: var(--primary);
+    }
+
+    .auth-modal input::placeholder {
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+
     .auth-modal button {
-        align-self: center;
-        background-color: blue;
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
         color: white;
-        padding: 5px 15px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .auth-modal button:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(67, 97, 238, 0.4);
+    }
+
+    .auth-modal button:active {
+        transform: translateY(0px);
+    }
+
+    .auth-modal button:focus {
+        outline: none;
+        box-shadow: 0 0 0 1px rgba(67, 97, 238, 0.4);
     }
 
     .auth-modal a {
-        margin-top: 15px;
+        margin-top: 20px;
+        font-size: 0.85rem;
+        color: var(--text-light);
+        text-decoration: none;
+        transition: color var(--transition);
+    }
+
+    .auth-modal a:hover {
+        color: var(--primary);
     }
 
     .auth-modal hr {
-        border: 0;
+        border: none;
         width: 100%;
         height: 1px;
-        background-image: linear-gradient(to right, 
-            rgba(120, 120, 120, 0),
-            rgba(120, 120, 120, 0.75),
-            rgba(120, 120, 120, 0));
+        background: linear-gradient(to right,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.1),
+            rgba(0, 0, 0, 0));
+        margin: 5px 0;
     }
 </style>

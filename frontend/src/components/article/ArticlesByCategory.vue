@@ -33,7 +33,7 @@ export default {
         }
     },
     watch: {
-        $route(to) {
+        $route() {
             this.category.id = this.$route.params.id
             this.articles = []
             this.page = 1
@@ -77,16 +77,92 @@ export default {
 </script>
 
 <style>
-    .articles-by-category ul {
-        list-style-type: none;
-        padding: 0px;
+    .article-item {
+        border-radius: var(--radius);
+        margin-bottom: 20px;
+        background-color: var(--surface);
+        padding: 24px;
+        box-shadow: var(--shadow);
+        transition: box-shadow var(--transition), transform var(--transition);
     }
 
+    .article-item:hover {
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-3px);
+    }
 
-    .articles-by-category .load-more {
+    .article-item a {
+        display: flex;
+        align-items: flex-start;
+        text-decoration: none;
+        color: var(--text);
+        gap: 20px;
+    }
+
+    .article-item-img {
+        flex-shrink: 0; 
+    }
+
+    .article-item-img img {
+        border-radius: 8px;
+        object-fit: cover; 
+        width: 130px;
+        height: 130px;
+    }
+
+    
+    .article-item-info {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        margin-top: 25px;
+        flex: 1;
+    }
+
+    .article-item-info h2 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        color: var(--text);
+        
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .article-item-info p {
+        flex: 1;
+        color: var(--text-light);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0 0 12px 0;
+        
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .article-item-author {
+        font-size: 0.8rem;
+        color: var(--text-light);
+        letter-spacing: 0.5px;
+    }
+
+    .article-item-author strong {
+        color: var(--primary);
+    }
+
+    .articles-by-category ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .articles-by-category li {
+        list-style: none;
+    }
+
+    .articles-by-category {
+        padding: 20px;
     }
 </style>

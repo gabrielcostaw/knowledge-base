@@ -103,8 +103,8 @@ export default {
       }
     },
     mounted() {
-        this.loadArticles(),
-        this.loadCategories(),
+        this.loadArticles()
+        this.loadCategories()
         this.loadUsers()
     },
     watch: {
@@ -203,6 +203,83 @@ export default {
 </script>
 
 <style>
+    .table {
+        border-collapse: separate;
+        border-spacing: 0 6px; 
+    }
 
+    .table thead th {
+        border: none;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--text-light);
+        padding-bottom: 12px;
+    }
+
+    .table tbody tr {
+        background-color: white;
+        box-shadow: var(--shadow);
+        border-radius: 8px;
+        transition: transform var(--transition);
+    }
+
+    .table tbody tr:hover {
+        transform: translateX(4px);
+    }
+
+    .table tbody td {
+        border: none;
+        padding: 14px 12px;
+        vertical-align: middle;
+        font-size: 0.9rem;
+    }
+    
+    .btn-warning, .btn-danger {
+        border: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .btn-warning:hover, .btn-danger:hover {
+        opacity: 0.85;
+        transform: translateY(-1px);
+    }
+
+    .form-control {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 0.9rem;
+        transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .form-control:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        border: none;
+        border-radius: 8px;
+        padding: 8px 20px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .btn-primary:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+        background: var(--primary);
+    }
+
+    .table td:last-child {
+        white-space: nowrap; 
+        width: 1%;           
+    }
 </style>
-
