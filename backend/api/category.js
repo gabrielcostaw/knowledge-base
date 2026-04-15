@@ -57,7 +57,7 @@ module.exports = app => {
 
     const withPath = categories => {
         const getParent = (categories, parentId) => {
-            const  parent = categories.filter(parent => parent.id === parentId)
+            const parent = categories.filter(parent => parent.id === parentId)
             return parent.length ? parent[0] : null
         }
 
@@ -67,7 +67,7 @@ module.exports = app => {
 
             while( parent ) {
                 path = `${parent.name} > ${path}`
-                parent = getParent(categories, parent.parentID)
+                parent = getParent(categories, parent.parentId)
             } 
 
             return { ...category, path }

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://127.0.0.1/knowledge_stats', { useNewUrlParser: true })
+mongoose.connect(process.env.MONGO_URL || 'mongodb://127.0.0.1/knowledge_stats', { useNewUrlParser: true })
 
 // Erros após a conexão inicial (quedas, timeouts, etc.)
 mongoose.connection.on('error', err => {

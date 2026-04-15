@@ -77,7 +77,7 @@ module.exports = app => {
                 article.content = article.content.toString()
                 return res.json(article)
             })        
-            .catch(err => res.send(500).send(err))
+            .catch(err => res.status(500).send(err))
     }
 
     const getByCategory = async (req, res) => {

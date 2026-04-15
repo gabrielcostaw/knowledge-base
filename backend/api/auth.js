@@ -15,8 +15,8 @@ module.exports = app => {
     
             if(!user) return res.status(400).send('Usuário não encontrado')
             
-            const isMath = bcrypt.compareSync(req.body.password, user.password)
-            if(!isMath) return res.status(401).send('Usuário ou senha inválido')
+            const isMatch = bcrypt.compareSync(req.body.password, user.password)
+            if(!isMatch) return res.status(401).send('Usuário ou senha inválido')
     
             const now = Math.floor(Date.now() / 1000)
     
@@ -50,7 +50,7 @@ module.exports = app => {
                 }
             }
         } catch(e) {
-
+            return res.send(false)
         }
 
         res.send(false)
