@@ -1,13 +1,13 @@
 const app = require('express')()
 const consign = require('consign')
 const db = require('./config/db')
-// const mongoose = require('mongoose')
+const mongoose = require('mongoose')
 
 require('./config/mongodb')
 
 
 app.db = db
-// app.mongoose = mongoose
+app.mongoose = mongoose
 
 //consign carrega os arquivos automaticamente e injeta no app
 //a ordem importa! passport antes das rotas e middlewares antes das apis
@@ -25,8 +25,6 @@ consign()
     .into(app)
 
 
-const PORT = process.env.PORT || 3000
-
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`)
+app.listen(3000, () => {
+    console.log('backend executando com sucesso') 
 })

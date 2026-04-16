@@ -1,4 +1,4 @@
-authSecret = process.env.AUTH_SECRET
+const { authSecret } = require('../.env')
 const  passport = require('passport')
 const passportJwt = require('passport-jwt')
 const auth = require('../api/auth')
