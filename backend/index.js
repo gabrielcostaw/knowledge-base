@@ -1,7 +1,7 @@
 const app = require('express')()
 const consign = require('consign')
 const db = require('./config/db')
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 
 require('./config/mongodb')
 
@@ -25,6 +25,5 @@ consign()
     .into(app)
 
 
-app.listen(3000, () => {
-    console.log('backend executando com sucesso') 
-})
+const PORT = process.env.PORT || 3000
+app.listen(PORT)
