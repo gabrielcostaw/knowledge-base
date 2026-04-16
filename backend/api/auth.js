@@ -15,18 +15,20 @@ module.exports = app => {
     
             if(!user) return res.status(400).send('Usuário não encontrado')
             
+            //compara a senha digitada com o hash salvo no banco
             const isMatch = bcrypt.compareSync(req.body.password, user.password)
             if(!isMatch) return res.status(401).send('Usuário ou senha inválido')
     
             const now = Math.floor(Date.now() / 1000)
     
+            // payload é o conjunto de dados que ficam dentro do token
             const payload = {
                 id: user.id,
                 name: user.name,
                 email: user.email,
                 admin: user.admin,
-                iat: now,
-                exp: now + (60 * 60 * 24 * 3)
+                iat: now,                      //data de criação
+                exp: now + (60 * 60 * 24 * 3)  //expira em 3 dias
             }
     
             res.json({
@@ -45,11 +47,13 @@ module.exports = app => {
         try {
             if(userData) {
                 const token = jwt.decode(userData.token, authSecret)
+                //verifica se o token ainda não expirou
                 if(new Date(token.exp * 1000) > new Date()) {
                     return res.send(true)
                 }
             }
         } catch(e) {
+            //token invalido ou expirado, retorna false
             return res.send(false)
         }
 

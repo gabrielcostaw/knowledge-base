@@ -1,11 +1,12 @@
 const admin = require('./admin')
 
 module.exports = app => {
+    //rotas publicas, nao precisam de autenticação
     app.post('/signup', app.api.user.save)
     app.post('/signin', app.api.auth.signin)
     app.post('/validateToken', app.api.auth.validateToken)
 
-
+    //rotas de usuario, apenas admin podem gerenciar usuarios
     app.route('/users')
         .all(app.config.passport.authenticate())
         .post(admin(app.api.user.save))
@@ -23,6 +24,7 @@ module.exports = app => {
         .get(admin(app.api.category.get))
         .post(admin(app.api.category.save))
 
+    //categories/tree precisa vir antes de categories/:id se nao o Express interpreta o "/tree" como um :id
     app.route('/categories/tree')
         .all(app.config.passport.authenticate())
         .get(app.api.category.getTree)   

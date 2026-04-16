@@ -11,11 +11,13 @@ export default new Vuex.Store({
     },
     mutations: {
         toggleMenu(state, isVisible) {
+            // menu nunca fica visivel sem um usuario logado
             if(!state.user) {
                 state.isMenuVisible = false
                 return
             }
 
+            // se nao passar argumento, inverte o estado atual
             if(isVisible === undefined) {
                 state.isMenuVisible = !state.isMenuVisible
             } else {
@@ -25,6 +27,7 @@ export default new Vuex.Store({
         setUser(state, user) {
             state.user = user
             if(user) {
+                //injeta o token em todas as requisições axios automaticamente
                 axios.defaults.headers.common['Authorization'] = `bearer ${user.token}`
                 state.isMenuVisible = true
             } else {

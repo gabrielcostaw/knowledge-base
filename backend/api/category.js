@@ -55,6 +55,8 @@ module.exports = app => {
         }
     }
 
+    // withPath constroi o caminho completo de cada categoria
+    // Ex: "Desenvolvimento > Frontend > Vue.js"
     const withPath = categories => {
         const getParent = (categories, parentId) => {
             const parent = categories.filter(parent => parent.id === parentId)
@@ -65,6 +67,7 @@ module.exports = app => {
             let path = category.name
             let parent = getParent(categories, category.parentId)
 
+            //sobe na árvore até chegar na raiz
             while( parent ) {
                 path = `${parent.name} > ${path}`
                 parent = getParent(categories, parent.parentId)
@@ -97,6 +100,8 @@ module.exports = app => {
     }
 
 
+    //toTree transforma a lista plana de categorias em estrutura de arvore
+    //para o menu lateral renderizar com hierarquia
     const toTree = (categories, tree) => {
         if(!tree) tree = categories.filter(c => !c.parentId)
         tree = tree.map(parentNode => {
@@ -107,6 +112,7 @@ module.exports = app => {
 
         return tree
     }
+
 
     const getTree = (req, res) => {
         app.db('categories')

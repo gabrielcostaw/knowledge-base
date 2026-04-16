@@ -9,6 +9,8 @@ require('./config/mongodb')
 app.db = db
 app.mongoose = mongoose
 
+//consign carrega os arquivos automaticamente e injeta no app
+//a ordem importa! passport antes das rotas e middlewares antes das apis
 consign()
     .include('./config/passport.js')
     .then('./api/auth.js')

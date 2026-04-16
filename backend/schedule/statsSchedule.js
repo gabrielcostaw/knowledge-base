@@ -2,6 +2,9 @@ const consign = require('consign')
 const schedule = require('node-schedule')
 
 module.exports = app => {
+
+    //roda a cada 1 minuto e salva as estatisticas no MongoDB
+    //Só salva  se algo mudou e evita dados duplicados
     schedule.scheduleJob('*/1 * * * *', async function () {
         const usersCount = await app.db('users').count('id').first()
         const categoriesCount = await app.db('categories').count('id').first()
@@ -9,6 +12,7 @@ module.exports = app => {
 
         const { Stat } = app.api.stat
 
+        //busca o registro mais recente para comparar
         const lastStat = await Stat.findOne({}, {},
             { sort: {'createdAt': -1 }} )
 
