@@ -1,15 +1,21 @@
 const { db } = require('./.env')
 
 module.exports = {
-  development: {
-    client: 'pg',
-    connection: db,
-    pool: {
-      min: 2,
-      max: 10
+    development: {
+        client: 'postgresql',
+        connection: {
+            host: 'localhost',
+            database: 'knowledge',
+            user: 'postgres',
+            password: 'postgres'
+        },
+        migrations: { directory: './migrations' }
     },
-    migrations: {
-      tableName: 'knex_migrations'
+    production: {
+        client: 'postgresql',
+        connection: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false }, // obrigatório na maioria das plataformas
+        migrations: { directory: './migrations' },
+        pool: { min: 2, max: 10 }
     }
-  }
-};
+}
