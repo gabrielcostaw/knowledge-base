@@ -48,7 +48,7 @@ export default {
         },
         async signup() {
             try {
-                const res = await axios.post(`${baseApiUrl}/signup`, this.user)
+                await axios.post(`${baseApiUrl}/signup`, this.user)
 
                 this.$toasted.global.defaultSuccess()
                 this.user = {}
