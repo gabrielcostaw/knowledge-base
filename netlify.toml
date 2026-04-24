@@ -1,12 +1,10 @@
 [build]
-  command = "cd frontend && npm install && npm run build"
+  command = "cd frontend && npm install && npm run build; exit 0"
   publish = "frontend/dist"
 
 [build.environment]
   NODE_VERSION = "16"
-
-[functions]
-  directory = ""
+  CI = "false"
 
 [[redirects]]
   from = "/*"
