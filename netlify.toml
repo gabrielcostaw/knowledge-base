@@ -1,5 +1,5 @@
 [build]
-  command = "cd frontend && npm install && npm run build; exit 0"
+  command = "cd frontend && npm install && npm run build & BUILD_PID=$! && wait $BUILD_PID; pkill -f vue-cli-service || true; exit 0"
   publish = "frontend/dist"
 
 [build.environment]
