@@ -1,5 +1,5 @@
 [build]
-  command = "bash build.sh"
+  command = "cd frontend && npm install && npm run build"
   publish = "frontend/dist"
 
 [build.environment]

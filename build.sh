@@ -1,7 +1,8 @@
 #!/bin/bash
+set -m
 cd frontend
 npm install
 npm run build
-EXIT_CODE=$?
-kill $(jobs -p) 2>/dev/null || true
-exit $EXIT_CODE
+BUILD_EXIT=$?
+kill -TERM -$$ 2>/dev/null || true
+exit $BUILD_EXIT
